@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App.js';
+import './css/min.css';
 
-ReactDOM.render(<h1>Hello world</h1>,
-    document.getElementById('root')
+var doc = document.getElementById('root');
+ReactDOM.render(
+	<div>
+		<App/>
+	</div>,
+    doc
 )

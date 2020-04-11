@@ -3,7 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const CleanWebpackPlugin = require('clean-webpack-plugin');
+const  { CleanWebpackPlugin }  = require('clean-webpack-plugin');
 module.exports = {
 	mode : 'development',
     // 项目入口，webpack从此处开始构建
@@ -26,11 +26,15 @@ module.exports = {
         rules: [
 			{
                 test: /\.js|jsx$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                 },
-            }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
 	    ]
 	},
 	performance: {
@@ -62,12 +66,6 @@ module.exports = {
             //    collapseWhitespace: true,    //删除空白符与换行符
               }
         }),
-        // new CleanWebpackPlugin(['dist',
-        //     'build'], {
-        //     root:__dirname,
-        //     verbose: true,
-        //     dry: false,
-        //     exclude: ['jslibs']
-        // })
+        new CleanWebpackPlugin(),
     ],
 }
